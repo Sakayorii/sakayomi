@@ -1,0 +1,114 @@
+package dev.sakayori.sakayomi.extension.en.patchfriday
+
+import dev.sakayori.sakayomi.network.GET
+import dev.sakayori.sakayomi.network.asObservableSuccess
+import dev.sakayori.sakayomi.source.model.FilterList
+import dev.sakayori.sakayomi.source.model.MangasPage
+import dev.sakayori.sakayomi.source.model.Page
+import dev.sakayori.sakayomi.source.model.SChapter
+import dev.sakayori.sakayomi.source.model.SManga
+import dev.sakayori.sakayomi.source.online.HttpSource
+import dev.sakayori.sakayomi.util.asJsoup
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import rx.Observable
+
+class PatchFriday : HttpSource() {
+
+    override val name = "Patch Friday"
+
+    override val baseUrl = "https://patchfriday.com"
+
+    override val lang = "en"
+
+    override val supportsLatest = false
+
+    override val client: OkHttpClient = network.cloudflareClient
+
+    private fun createManga(): SManga = SManga.create().apply {
+        initialized = true
+        title = "Patch Friday"
+        status = SManga.ONGOING
+        url = ""
+        author = "Patch Friday"
+        artist = author
+        thumbnail_url = "https://patchfriday.com/patches/68.png"
+        description = "The IT security webcomic"
+    }
+
+    // Popular
+
+    override fun fetchPopularManga(page: Int): Observable<MangasPage> = Observable.just(MangasPage(listOf(createManga()), false))
+
+    override fun popularMangaRequest(page: Int): Request = throw UnsupportedOperationException()
+
+    override fun popularMangaParse(response: Response): MangasPage = throw UnsupportedOperationException()
+
+    // Latest
+
+    override fun latestUpdatesRequest(page: Int): Request = throw UnsupportedOperationException()
+
+    override fun latestUpdatesParse(response: Response): MangasPage = throw UnsupportedOperationException()
+
+    // Search
+
+    override fun fetchSearchManga(page: Int, query: String, filters: FilterList): Observable<MangasPage> = Observable.just(MangasPage(emptyList(), false))
+
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request = throw UnsupportedOperationException()
+
+    override fun searchMangaParse(response: Response): MangasPage = throw UnsupportedOperationException()
+
+    // Details
+
+    override fun fetchMangaDetails(manga: SManga): Observable<SManga> = Observable.just(createManga())
+
+    override fun mangaDetailsParse(response: Response): SManga = throw UnsupportedOperationException()
+
+    // Chapters
+
+    override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> = client.newCall(GET("$baseUrl/search/?search=;", headers))
+        .asObservableSuccess()
+        .map { parseChapters(it) }
+
+    private fun parseChapters(response: Response): List<SChapter> {
+        val chapters = mutableListOf<SChapter>()
+        var document = response.asJsoup()
+        var page = document.select("div > div:first-of-type > div:first-of-type > a").attr("abs:href").replace(baseUrl, "").replace("/", "").trim().toInt()
+        while (page > 0) {
+            val element = document.select("div > div > div:first-of-type > a")
+            element.forEach {
+                val chapter = SChapter.create()
+                chapter.url = it.attr("abs:href").replace(baseUrl, "").trim()
+                chapter.chapter_number = chapter.url.replace("/", "").trim().toFloat()
+                chapter.name = "#${chapter.chapter_number.toInt()} - ${it.text()}"
+                chapter.date_upload = System.currentTimeMillis()
+                chapters.add(chapter)
+            }
+            page -= 10
+            document = client.newCall(GET("$baseUrl/search/?search=;id=$page", headers)).execute().asJsoup()
+        }
+        // Add First Chapter becouse for some reason it does not show up in chapter search
+        chapters.add(
+            SChapter.create().apply {
+                url = "/1/"
+                chapter_number = url.replace("/", "").trim().toFloat()
+                name = "#${chapter_number.toInt()} - The One"
+                date_upload = System.currentTimeMillis()
+            },
+        )
+        return chapters
+    }
+
+    override fun chapterListParse(response: Response): List<SChapter> = throw UnsupportedOperationException()
+
+    // Pages
+
+    override fun fetchPageList(chapter: SChapter): Observable<List<Page>> = Observable.just(listOf(Page(0, baseUrl + chapter.url)))
+
+    override fun pageListParse(response: Response): List<Page> = throw UnsupportedOperationException()
+
+    override fun imageUrlParse(response: Response): String = response.asJsoup().select("div#strip_image img").attr("abs:src")
+
+    override fun getFilterList() = FilterList()
+}

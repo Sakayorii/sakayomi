@@ -1,0 +1,24 @@
+package dev.sakayori.sakayomi.extension.es.lmtoonline
+
+import dev.sakayori.sakayomi.multisrc.madara.Madara
+import dev.sakayori.sakayomi.network.interceptor.rateLimitHost
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+class Lmtos :
+    Madara(
+        "Lmtos",
+        "https://www.lmtos.com",
+        "es",
+        dateFormat = SimpleDateFormat("MMMM d, yyyy", Locale("es")),
+    ) {
+
+    override val id = 3752522006902890093
+
+    override val client = super.client.newBuilder()
+        .rateLimitHost(baseUrl.toHttpUrl(), 3, 1)
+        .build()
+
+    override val useNewChapterEndpoint = true
+}

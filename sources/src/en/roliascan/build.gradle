@@ -1,0 +1,10 @@
+ext {
+    extName = 'Rolia Scan'
+    extClass = '.RoliaScan'
+    themePkg = 'mangataro'
+    overrideVersionCode = 7
+    baseUrl = 'https://roliascan.com'
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

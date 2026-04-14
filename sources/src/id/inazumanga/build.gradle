@@ -1,0 +1,10 @@
+ext {
+    extName = 'ReYume'
+    extClass = '.ReYume'
+    themePkg = 'zeistmanga'
+    baseUrl = 'https://www.re-yume.my.id'
+    overrideVersionCode = 27
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

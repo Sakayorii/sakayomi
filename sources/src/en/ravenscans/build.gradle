@@ -1,0 +1,10 @@
+ext {
+    extName = 'Raven Scans'
+    extClass = '.RavenScans'
+    themePkg = 'mangathemesia'
+    baseUrl = 'https://ravenscans.org'
+    overrideVersionCode = 2
+    isNsfw = true
+}
+
+apply from: "$rootDir/common.gradle"

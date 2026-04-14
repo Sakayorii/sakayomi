@@ -1,0 +1,19 @@
+package dev.sakayori.sakayomi.extension.ko.wolfdotcom
+
+import dev.sakayori.sakayomi.source.SourceFactory
+import dev.sakayori.sakayomi.source.model.FilterList
+import org.jsoup.nodes.Document
+
+class WolfFactory : SourceFactory {
+    override fun createSources() = listOf(
+        Wolf("웹툰", "ing", "list", "view"), // webtoon
+        Wolf("만화책", "cm", "cl", "cv"), // comic book
+        object : Wolf("포토툰", "pt", "list", "view") { // phototoon
+            override fun getFilterList(): FilterList = FilterList()
+
+            override fun parseSearchFilters(document: Document) {
+                return
+            }
+        },
+    )
+}

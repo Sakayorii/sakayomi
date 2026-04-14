@@ -1,0 +1,9 @@
+ext {
+    extName = 'Manga1000'
+    extClass = '.Manga1000'
+    baseUrl = 'https://hachiraw.win'
+    extVersionCode = 13
+    isNsfw = true
+}
+
+apply from: "$rootDir/common.gradle"

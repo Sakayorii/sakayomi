@@ -1,0 +1,10 @@
+ext {
+    extName = 'Rocks Manga'
+    extClass = '.RocksManga'
+    themePkg = 'madara'
+    baseUrl = 'https://rocksmanga.com'
+    overrideVersionCode = 3
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

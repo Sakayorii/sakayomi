@@ -1,0 +1,8 @@
+ext {
+    extName = 'MangaPoisk'
+    extClass = '.MangaPoisk'
+    extVersionCode = 13
+    isNsfw = true
+}
+
+apply from: "$rootDir/common.gradle"

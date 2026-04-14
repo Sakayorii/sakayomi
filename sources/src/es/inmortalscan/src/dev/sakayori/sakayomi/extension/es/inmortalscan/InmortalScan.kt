@@ -1,0 +1,19 @@
+package dev.sakayori.sakayomi.extension.es.inmortalscan
+
+import dev.sakayori.sakayomi.multisrc.madara.Madara
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+class InmortalScan :
+    Madara(
+        "Inmortal Scan",
+        "https://scanimnortal.com",
+        "es",
+        SimpleDateFormat("MMM dd, yyyy", Locale("es")),
+    ) {
+    override val mangaSubString = "mg"
+
+    override val useLoadMoreRequest = LoadMoreStrategy.Never
+
+    override val useNewChapterEndpoint = true
+}

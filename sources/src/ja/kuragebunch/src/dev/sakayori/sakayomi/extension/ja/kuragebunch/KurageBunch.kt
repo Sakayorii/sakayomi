@@ -1,0 +1,33 @@
+package dev.sakayori.sakayomi.extension.ja.kuragebunch
+
+import dev.sakayori.sakayomi.multisrc.gigaviewer.GigaViewer
+import dev.sakayori.sakayomi.network.GET
+import dev.sakayori.sakayomi.source.model.SManga
+import okhttp3.Request
+import org.jsoup.nodes.Element
+
+class KurageBunch :
+    GigaViewer(
+        "Kurage Bunch",
+        "https://kuragebunch.com",
+        "ja",
+    ) {
+    override val supportsLatest: Boolean = false
+
+    override fun popularMangaRequest(page: Int): Request = GET("$baseUrl/series/kuragebunch", headers)
+
+    override val popularMangaSelector: String = "ul.page-series-list li div.item-box"
+
+    override fun popularMangaFromElement(element: Element): SManga = SManga.create().apply {
+        title = element.selectFirst("a.series-data-container h4")!!.text()
+        thumbnail_url = element.selectFirst("a.series-thumb img")?.absUrl("data-src")
+        setUrlWithoutDomain(element.selectFirst("a")!!.absUrl("href"))
+    }
+
+    override fun getCollections(): List<Collection> = listOf(
+        Collection("くらげバンチ", "kuragebunch"),
+        Collection("読切", "oneshot"),
+        Collection("月刊コミックバンチ", "comicbunch"),
+        Collection("KANATA", "kanata"),
+    )
+}

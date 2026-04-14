@@ -1,0 +1,14 @@
+ext {
+    extName = 'CosmicScans.id'
+    extClass = '.CosmicScansID'
+    themePkg = 'mangathemesia'
+    baseUrl = 'https://lc5.cosmicscans.asia'
+    overrideVersionCode = 19
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"
+
+dependencies {
+    implementation project(':lib:randomua')
+}

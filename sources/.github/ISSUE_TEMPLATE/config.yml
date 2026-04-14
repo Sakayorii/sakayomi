@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: ⚠️ Application issue
+    url: https://github.com/Sakayorii/sakayomi/issues/
+    about: Issues and requests about the app itself should be opened in Sakayomi's repository instead
+  - name: 📦 Extension list
+    url: https://Sakayorii.github.io/extensions
+    about: List of all available extensions with download links
+  - name: 🖥️ Sakayomi website
+    url: https://sakayomi.sakayori.dev/docs/guides/troubleshooting/
+    about: Guides, troubleshooting, and answers to common questions

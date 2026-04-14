@@ -1,0 +1,10 @@
+ext {
+    extName = 'BokugenTranslation'
+    extClass = '.BokugenTranslation'
+    themePkg = 'mangathemesia'
+    baseUrl = 'https://bokugents.com'
+    overrideVersionCode = 17
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

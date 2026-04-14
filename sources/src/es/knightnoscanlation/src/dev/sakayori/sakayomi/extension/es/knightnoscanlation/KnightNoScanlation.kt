@@ -1,0 +1,33 @@
+package dev.sakayori.sakayomi.extension.es.knightnoscanlation
+
+import dev.sakayori.sakayomi.multisrc.madara.Madara
+import dev.sakayori.sakayomi.network.interceptor.rateLimitHost
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.OkHttpClient
+import java.text.SimpleDateFormat
+import java.util.Locale
+import java.util.concurrent.TimeUnit
+
+class KnightNoScanlation :
+    Madara(
+        "Knight No Scanlation",
+        "https://lectorknight.com",
+        "es",
+        SimpleDateFormat("MMMM dd, yyyy", Locale("es")),
+    ) {
+    override val client: OkHttpClient = super.client.newBuilder()
+        .rateLimitHost(baseUrl.toHttpUrl(), 2, 1, TimeUnit.SECONDS)
+        .build()
+
+    override val mangaSubString = "sr"
+
+    override val useLoadMoreRequest = LoadMoreStrategy.Never
+
+    override val useNewChapterEndpoint = true
+
+    override val mangaDetailsSelectorStatus = "div.post-content_item:contains(Status) div.summary-content"
+
+    override fun popularMangaSelector() = "div.manga__item"
+
+    override val popularMangaUrlSelector = "div.post-title a"
+}

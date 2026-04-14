@@ -1,0 +1,8 @@
+ext {
+    extName = 'Scantrad Union'
+    extClass = '.ScantradUnion'
+    extVersionCode = 3
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

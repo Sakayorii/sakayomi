@@ -1,0 +1,33 @@
+package dev.sakayori.sakayomi.extension.fr.furyosquad
+
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import kotlin.system.exitProcess
+
+class UrlActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val intentData = intent?.data?.toString()
+        if (intentData != null) {
+            val mainIntent = Intent().apply {
+                action = "dev.sakayori.sakayomi.SEARCH"
+                putExtra("query", intentData)
+                putExtra("filter", packageName)
+            }
+            try {
+                startActivity(mainIntent)
+            } catch (e: ActivityNotFoundException) {
+                Log.e("FuryoSquad", e.toString())
+            }
+        } else {
+            Log.e("FuryoSquad", "could not parse uri from intent $intent")
+        }
+
+        finish()
+        exitProcess(0)
+    }
+}

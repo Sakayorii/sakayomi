@@ -1,0 +1,10 @@
+ext {
+    extName = 'Nyx Scans'
+    extClass = '.NyxScans'
+    themePkg = 'iken'
+    baseUrl = 'https://nyxmanga.org'
+    overrideVersionCode = 3
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

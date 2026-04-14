@@ -1,0 +1,10 @@
+ext {
+    extName = 'Manga Online'
+    extClass = '.MangaOnline'
+    themePkg = 'madara'
+    baseUrl = 'https://mangaonline.red'
+    overrideVersionCode = 2
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

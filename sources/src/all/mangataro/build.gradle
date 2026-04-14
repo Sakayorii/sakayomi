@@ -1,0 +1,10 @@
+ext {
+    extName = 'MangaTaro'
+    extClass = '.MangaTaroFactory'
+    themePkg = 'mangataro'
+    overrideVersionCode = 10
+    baseUrl = 'https://mangataro.org'
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

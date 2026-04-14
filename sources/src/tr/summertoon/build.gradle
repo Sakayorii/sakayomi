@@ -1,0 +1,10 @@
+ext {
+    extName = 'SummerToon'
+    extClass = '.SummerToon'
+    themePkg = 'madara'
+    baseUrl = 'https://summertoons.net'
+    overrideVersionCode = 1
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

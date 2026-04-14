@@ -1,0 +1,9 @@
+ext {
+    extName = 'Rimu Scans'
+    extClass = '.RimuScans'
+    baseUrl = 'https://rimu-scans.fr'
+    extVersionCode = 34
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

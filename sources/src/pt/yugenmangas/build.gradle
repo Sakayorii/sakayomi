@@ -1,0 +1,11 @@
+ext {
+    extName = 'Yugen Mangás'
+    extClass = '.YugenMangas'
+    extVersionCode = 50
+}
+
+apply from: "$rootDir/common.gradle"
+
+dependencies {
+    implementation project(':lib:randomua')
+}

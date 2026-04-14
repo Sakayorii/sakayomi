@@ -1,0 +1,218 @@
+package dev.sakayori.sakayomi.extension.es.yupmanga
+
+import app.cash.quickjs.QuickJs
+import dev.sakayori.sakayomi.network.GET
+import dev.sakayori.sakayomi.network.interceptor.rateLimit
+import dev.sakayori.sakayomi.source.model.FilterList
+import dev.sakayori.sakayomi.source.model.MangasPage
+import dev.sakayori.sakayomi.source.model.Page
+import dev.sakayori.sakayomi.source.model.SChapter
+import dev.sakayori.sakayomi.source.model.SManga
+import dev.sakayori.sakayomi.source.online.HttpSource
+import dev.sakayori.sakayomi.util.asJsoup
+import Sakayorii.utils.parseAs
+import kotlinx.serialization.Serializable
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.Request
+import okhttp3.Response
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+
+class Yupmanga : HttpSource() {
+
+    override val name = "Yupmanga"
+
+    override val baseUrl = "https://www.yupmanga.com"
+
+    override val lang = "es"
+
+    override val supportsLatest = true
+
+    override val client = network.cloudflareClient.newBuilder()
+        .rateLimit(1)
+        .build()
+
+    override fun headersBuilder() = super.headersBuilder()
+        .add("Referer", "$baseUrl/")
+        .add("x-requested-with", "XMLHttpRequest")
+
+    override fun popularMangaRequest(page: Int) = GET("$baseUrl/top", headers)
+
+    override fun popularMangaParse(response: Response) = parseSeriesList(response.asJsoup())
+
+    override fun latestUpdatesRequest(page: Int) = GET("$baseUrl/?page=$page", headers)
+
+    override fun latestUpdatesParse(response: Response) = parseSeriesList(response.asJsoup())
+
+    override fun searchMangaRequest(page: Int, query: String, filters: FilterList): Request {
+        if (query.length < 3) {
+            throw Exception("El término de búsqueda debe tener al menos 3 caracteres.")
+        }
+        val url = "$baseUrl/search.php".toHttpUrl().newBuilder()
+            .addQueryParameter("q", query)
+            .addQueryParameter("page", page.toString())
+
+        return GET(url.build(), headers)
+    }
+
+    override fun searchMangaParse(response: Response): MangasPage {
+        val document = response.asJsoup()
+        document.selectFirst("main > div.container > div[class^=bg-red]:has(p)")?.let {
+            throw Exception("Límite de solicitudes alcanzado. Intente de nuevo en unos minutos.")
+        }
+        return parseSeriesList(document)
+    }
+
+    private fun parseSeriesList(document: Document): MangasPage {
+        val mangas = document.selectFirst("div.grid:has(> div.comic-card)")?.select("div.comic-card")?.map { element ->
+            SManga.create().apply {
+                title = element.selectFirst("h3")!!.text()
+                val rawUrl = element.selectFirst("> a[href]")!!.attr("abs:href")
+                url = rawUrl.toHttpUrl().queryParameter("id")!!
+                thumbnail_url = element.selectFirst("img.object-cover")?.attr("abs:src")
+            }
+        } ?: emptyList()
+        val hasNextPage = document.selectFirst("div.flex > a:contains(Siguiente)") != null
+        return MangasPage(mangas, hasNextPage)
+    }
+
+    override fun mangaDetailsRequest(manga: SManga) = GET("$baseUrl/series.php?id=${manga.url}", headers)
+
+    override fun mangaDetailsParse(response: Response): SManga {
+        val document = response.asJsoup()
+        return SManga.create().apply {
+            with(document.selectFirst("main > div.container")!!) {
+                title = selectFirst("h1")!!.text()
+                description = selectFirst("p#synopsisText")?.text()
+                author = selectFirst("i[title=Editorial] + span")?.text()
+                status = selectFirst("span:has(i[title=Estado])").parseStatus()
+                genre = select("a.genre-tag").joinToString { genre ->
+                    genre.text().replaceFirstChar { it.uppercase() }
+                }
+                thumbnail_url = document.selectFirst("meta[property=og:image]")!!.attr("content")
+            }
+        }
+    }
+
+    private fun Element?.parseStatus(): Int = when (this?.text()?.lowercase()) {
+        "activo" -> SManga.ONGOING
+        "finalizado" -> SManga.COMPLETED
+        "abandonado" -> SManga.CANCELLED
+        "pausado" -> SManga.ON_HIATUS
+        else -> SManga.UNKNOWN
+    }
+
+    private fun paginatedChapterListRequest(mangaId: String, page: Int): Request {
+        val url = "$baseUrl/ajax/load_chapters.php".toHttpUrl().newBuilder()
+            .addQueryParameter("series_id", mangaId)
+            .addQueryParameter("page", page.toString())
+            .addQueryParameter("order", "newest_first")
+
+        return GET(url.build(), headers)
+    }
+
+    override fun chapterListRequest(manga: SManga): Request = paginatedChapterListRequest(manga.url, 1)
+
+    override fun chapterListParse(response: Response): List<SChapter> {
+        val allChapters = mutableListOf<SChapter>()
+        val mangaId = response.request.url.queryParameter("series_id")!!
+
+        lateinit var chapterListDto: ChapterListDto
+
+        var page = 1
+        do {
+            chapterListDto = if (page == 1) {
+                response.parseAs()
+            } else {
+                client.newCall(
+                    paginatedChapterListRequest(mangaId, page),
+                ).execute().parseAs()
+            }
+
+            val doc = Jsoup.parseBodyFragment(chapterListDto.html, baseUrl)
+            allChapters.addAll(parseChapterList(doc))
+
+            page++
+        } while (chapterListDto.hasNextPage())
+
+        return allChapters
+    }
+
+    private fun parseChapterList(document: Document): List<SChapter> = document.select("div.comic-card").map { element ->
+        val totalPages = element.selectFirst("span")!!.text()
+        val chapterId = element.selectFirst("a[data-chapter]")!!.attr("data-chapter")
+
+        SChapter.create().apply {
+            name = element.selectFirst("h3")!!.text()
+            url = "/ajax/get_reader_token.php?chapter=$chapterId#$totalPages"
+        }
+    }
+
+    override fun pageListRequest(chapter: SChapter): Request {
+        val chapterUrl = "$baseUrl${chapter.url}".toHttpUrl()
+        val chapterId = chapterUrl.queryParameter("chapter")
+        val challenge = client.newCall(GET("$baseUrl/ajax/get_challenge.php?chapter=$chapterId", headers)).execute().parseAs<ChallengeDto>()
+
+        val chapterTokenUrl = chapterUrl.newBuilder().apply {
+            if (challenge.success) {
+                val answer = QuickJs.create().use {
+                    it.evaluate("(function(){ ${challenge.challenge_js} })()")?.toString()
+                }
+
+                if (answer != null) {
+                    addQueryParameter("challenge_id", challenge.challenge_id)
+                    addQueryParameter("answer", answer)
+                }
+            }
+        }.build()
+
+        return GET(chapterTokenUrl, headers)
+    }
+
+    override fun pageListParse(response: Response): List<Page> {
+        val httpUrl = response.request.url
+        val chapterId = httpUrl.queryParameter("chapter")!!
+
+        val token = response.parseAs<TokenDto>()
+        if (!token.success || chapterId.isNullOrEmpty()) {
+            throw Exception("Información desactualizada. Refresque la lista de capítulos.")
+        }
+        val totalPages = httpUrl.fragment!!.toInt()
+
+        return (1..totalPages).map { pageNumber ->
+            val imageUrl = "$baseUrl/image-proxy-v2.php".toHttpUrl().newBuilder()
+                .addQueryParameter("chapter", chapterId)
+                .addQueryParameter("page", pageNumber.toString())
+                .addQueryParameter("context", "reader")
+                .addQueryParameter("token", token.token)
+                .build()
+
+            Page(pageNumber, imageUrl = imageUrl.toString())
+        }
+    }
+
+    override fun imageUrlParse(response: Response) = throw UnsupportedOperationException()
+
+    @Serializable
+    internal class ChapterListDto(
+        val html: String,
+        private val currentPage: Int,
+        private val totalPages: Int,
+    ) {
+        fun hasNextPage() = currentPage < totalPages
+    }
+
+    @Serializable
+    internal class TokenDto(
+        val success: Boolean,
+        val token: String,
+    )
+
+    @Serializable
+    internal class ChallengeDto(
+        val success: Boolean,
+        val challenge_id: String,
+        val challenge_js: String,
+    )
+}

@@ -1,0 +1,10 @@
+ext {
+    extName = 'Catzaa'
+    extClass = '.Catzaa'
+    themePkg = 'madara'
+    baseUrl = 'https://catzaa.net'
+    overrideVersionCode = 1
+    isNsfw = true
+}
+
+apply from: "$rootDir/common.gradle"

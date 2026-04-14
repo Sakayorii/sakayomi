@@ -1,0 +1,8 @@
+ext {
+    extName = 'Argos Comics'
+    extClass = '.ArgosComics'
+    extVersionCode = 53
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

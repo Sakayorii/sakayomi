@@ -1,0 +1,8 @@
+ext {
+    extName = 'Magazine Pocket'
+    extClass = '.MagazinePocket'
+    extVersionCode = 12
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

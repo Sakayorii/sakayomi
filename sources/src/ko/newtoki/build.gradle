@@ -1,0 +1,8 @@
+ext {
+    extName = 'NewToki / ManaToki'
+    extClass = '.TokiFactory'
+    extVersionCode = 33
+    isNsfw = true
+}
+
+apply from: "$rootDir/common.gradle"

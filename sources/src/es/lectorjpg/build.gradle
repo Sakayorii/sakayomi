@@ -1,0 +1,8 @@
+ext {
+    extName = 'LectorJPG'
+    extClass = '.LectorJpg'
+    extVersionCode = 45
+    isNsfw = true
+}
+
+apply from: "$rootDir/common.gradle"

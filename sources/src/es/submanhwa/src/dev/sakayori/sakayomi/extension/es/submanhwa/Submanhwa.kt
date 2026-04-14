@@ -1,0 +1,124 @@
+package dev.sakayori.sakayomi.extension.es.submanhwa
+
+import dev.sakayori.sakayomi.network.GET
+import dev.sakayori.sakayomi.source.model.FilterList
+import dev.sakayori.sakayomi.source.model.Page
+import dev.sakayori.sakayomi.source.model.SChapter
+import dev.sakayori.sakayomi.source.model.SManga
+import dev.sakayori.sakayomi.source.online.ParsedHttpSource
+import Sakayorii.utils.tryParse
+import okhttp3.HttpUrl.Companion.toHttpUrl
+import okhttp3.Request
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+import java.text.SimpleDateFormat
+import java.util.Locale
+
+class Submanhwa : ParsedHttpSource() {
+
+    override val name = "Submanhwa"
+    override val baseUrl = "https://submanhwa.com"
+    override val lang = "es"
+    override val supportsLatest = true
+
+    private val dateFormat = SimpleDateFormat("dd MMM. yyyy", Locale.ENGLISH)
+
+    override fun headersBuilder() = super.headersBuilder()
+        .add("Referer", "$baseUrl/")
+
+    override fun popularMangaRequest(page: Int): Request = GET(
+        baseUrl.toHttpUrl().newBuilder().apply {
+            addPathSegment("filterList")
+            addQueryParameter("page", page.toString())
+            addQueryParameter("sortBy", "views")
+            addQueryParameter("asc", "false")
+        }.build(),
+        headers,
+    )
+
+    override fun latestUpdatesRequest(page: Int): Request = GET(baseUrl, headers)
+
+    override fun searchMangaRequest(
+        page: Int,
+        query: String,
+        filters: FilterList,
+    ): Request = GET(
+        baseUrl.toHttpUrl().newBuilder().apply {
+            addPathSegment("filterList")
+            addQueryParameter("page", page.toString())
+            addQueryParameter("sortBy", "views")
+            addQueryParameter("asc", "false")
+            addQueryParameter("alpha", query)
+        }.build(),
+        headers,
+    )
+
+    override fun popularMangaSelector(): String = ".series-card"
+
+    override fun latestUpdatesSelector(): String = "div[class^=manga-item]"
+
+    override fun searchMangaSelector(): String = popularMangaSelector()
+
+    override fun popularMangaNextPageSelector(): String = "li a[rel=next]"
+
+    override fun latestUpdatesNextPageSelector(): String = "no next page"
+
+    override fun searchMangaNextPageSelector(): String = popularMangaNextPageSelector()
+
+    override fun popularMangaFromElement(element: Element): SManga = SManga.create().apply {
+        title = element.selectFirst(".series-title")!!.text()
+        setUrlWithoutDomain(element.selectFirst("a")!!.absUrl("href"))
+        thumbnail_url = element.selectFirst("img")!!.absUrl("src")
+    }
+
+    override fun latestUpdatesFromElement(element: Element): SManga = SManga.create().apply {
+        title = element.selectFirst("h3[class^=manga-title] a")!!.text()
+        setUrlWithoutDomain(element.selectFirst("a")!!.absUrl("href"))
+        thumbnail_url = element.selectFirst("img")!!.absUrl("src")
+    }
+
+    override fun searchMangaFromElement(element: Element): SManga = popularMangaFromElement(element)
+
+    override fun mangaDetailsParse(document: Document): SManga = SManga.create().apply {
+        title = document.selectFirst(".manga-title-centered")!!.text()
+        thumbnail_url = document.selectFirst("img")?.absUrl("src")
+        description = document.selectFirst("h5:contains(Resumen) + p")?.text()
+
+        val box = document.selectFirst(".main-content > .boxed-modern")
+
+        status = when (box?.selectFirst(".detail-label:contains(Estado) + .detail-value span")?.text()?.lowercase()) {
+            "completed" -> SManga.COMPLETED
+            "cancelled" -> SManga.CANCELLED
+            "ongoing" -> SManga.ONGOING
+            else -> SManga.UNKNOWN
+        }
+
+        author = box?.selectFirst(".detail-label:contains(Autor) + .detail-value a")?.text()
+        artist = box?.selectFirst(".detail-label:contains(Artist) + .detail-value a")?.text()
+        genre = box?.select(".detail-label:contains(Categor) + .detail-value a")?.joinToString { a -> a!!.text() }
+    }
+
+    override fun chapterListSelector(): String = ".chapters-grid [class^=chapter-card]"
+
+    override fun chapterFromElement(element: Element): SChapter = SChapter.create().apply {
+        val a = element.selectFirst("a.chapter-link")
+        name = a!!.text()
+        setUrlWithoutDomain(a.absUrl("href"))
+
+        val date = element.selectFirst("span:has(i.glyphicon-time)")?.text()
+            ?: element.select(".chapter-preview-meta > span").text()
+
+        date_upload = dateFormat.tryParse(date)
+    }
+
+    override fun pageListParse(document: Document): List<Page> = document.select("#all img").mapIndexed { idx, img ->
+        Page(idx, imageUrl = img.imgAttr())
+    }
+
+    private fun Element.imgAttr(): String? = when {
+        this.hasAttr("data-src") -> this.attr("abs:data-src")
+        else -> this.attr("abs:src")
+    }
+
+    override fun imageUrlParse(document: Document): String = throw UnsupportedOperationException()
+}

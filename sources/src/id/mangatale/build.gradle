@@ -1,0 +1,10 @@
+ext {
+    extName = 'Ikiru'
+    extClass = '.Ikiru'
+    themePkg = 'natsuid'
+    baseUrl = 'https://02.ikiru.wtf'
+    overrideVersionCode = 44
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

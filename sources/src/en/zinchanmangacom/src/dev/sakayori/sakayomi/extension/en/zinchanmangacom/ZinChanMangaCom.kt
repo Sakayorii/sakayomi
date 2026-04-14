@@ -1,0 +1,45 @@
+package dev.sakayori.sakayomi.extension.en.zinchanmangacom
+
+import dev.sakayori.sakayomi.multisrc.madara.Madara
+import dev.sakayori.sakayomi.source.model.SManga
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+
+class ZinChanMangaCom : Madara("ZinChanManga.com", "https://zinchangmanga.com", "en") {
+    override val useNewChapterEndpoint = true
+
+    override fun popularMangaFromElement(element: Element): SManga = super.popularMangaFromElement(element).apply {
+        title = url.urlToTitle() ?: title
+    }
+
+    override fun searchMangaFromElement(element: Element): SManga = super.searchMangaFromElement(element).apply {
+        title = url.urlToTitle() ?: title
+    }
+
+    override fun mangaDetailsParse(document: Document): SManga = super.mangaDetailsParse(document).apply {
+        title = document.location().urlToTitle() ?: title
+    }
+
+    private fun String.urlToTitle(): String? {
+        val slug = substringAfter("/manga/", "")
+            .substringBefore("/")
+            .takeUnless { it.isBlank() }
+            ?: return null
+
+        val result = StringBuilder(slug.length)
+        var capitalize = true
+        for (char in slug) {
+            result.append(
+                if (char == '-') {
+                    ' '
+                } else if (capitalize) {
+                    char.uppercase()
+                } else {
+                    char.lowercase()
+                },
+            )
+            capitalize = char == '-'
+        }
+        return result.toString()
+    }
+}

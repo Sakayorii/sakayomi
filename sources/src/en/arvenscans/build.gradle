@@ -1,0 +1,10 @@
+ext {
+    extName = 'Vortex Scans'
+    extClass = '.VortexScans'
+    themePkg = 'iken'
+    baseUrl = 'https://vortexscans.org'
+    overrideVersionCode = 42
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"

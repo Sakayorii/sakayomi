@@ -1,0 +1,9 @@
+ext {
+    extName = 'Rumanhua'
+    extClass = '.Rumanhua'
+    themePkg = 'mmlook'
+    baseUrl = 'https://m.rumanhua2.com'
+    overrideVersionCode = 3
+}
+
+apply from: "$rootDir/common.gradle"

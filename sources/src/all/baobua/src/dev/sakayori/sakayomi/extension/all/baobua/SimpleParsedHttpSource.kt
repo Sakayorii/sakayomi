@@ -1,0 +1,39 @@
+package dev.sakayori.sakayomi.extension.all.baobua
+
+import dev.sakayori.sakayomi.source.model.SManga
+import dev.sakayori.sakayomi.source.online.ParsedHttpSource
+import org.jsoup.nodes.Document
+import org.jsoup.nodes.Element
+
+abstract class SimpleParsedHttpSource : ParsedHttpSource() {
+
+    abstract fun simpleMangaSelector(): String
+
+    abstract fun simpleMangaFromElement(element: Element): SManga
+
+    abstract fun simpleNextPageSelector(): String?
+
+    // region popular
+    override fun popularMangaSelector() = simpleMangaSelector()
+    override fun popularMangaNextPageSelector() = simpleNextPageSelector()
+    override fun popularMangaFromElement(element: Element) = simpleMangaFromElement(element)
+    // endregion
+
+    // region last
+    override fun latestUpdatesSelector() = if (supportsLatest) simpleMangaSelector() else throw throw UnsupportedOperationException()
+
+    override fun latestUpdatesFromElement(element: Element) = if (supportsLatest) simpleMangaFromElement(element) else throw throw UnsupportedOperationException()
+
+    override fun latestUpdatesNextPageSelector() = if (supportsLatest) simpleNextPageSelector() else throw throw UnsupportedOperationException()
+    // endregion
+
+    // region search
+    override fun searchMangaSelector() = simpleMangaSelector()
+    override fun searchMangaFromElement(element: Element) = simpleMangaFromElement(element)
+    override fun searchMangaNextPageSelector() = simpleNextPageSelector()
+    // endregion
+
+    override fun chapterListSelector() = simpleMangaSelector()
+    override fun imageUrlParse(document: Document): String = throw UnsupportedOperationException()
+    // endregion
+}

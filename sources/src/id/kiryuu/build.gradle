@@ -1,0 +1,10 @@
+ext {
+    extName = 'Kiryuu'
+    extClass = '.Kiryuu'
+    themePkg = 'natsuid'
+    baseUrl = 'https://v2.kiryuu.to'
+    overrideVersionCode = 47
+    isNsfw = false
+}
+
+apply from: "$rootDir/common.gradle"
