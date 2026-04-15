@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://sakayomi.sakayori.dev">
-    <img src="./.github/assets/logo.png" alt="Sakayomi logo" title="Sakayomi logo" width="80"/>
+    <img src="./.github/assets/logo.png" alt="Mihon logo" title="Mihon logo" width="80"/>
 </a>
 
 # Sakayomi [App](#)
@@ -9,17 +9,17 @@
 ### Full-featured reader
 Discover and read manga, webtoons, comics, and more – easier than ever on your Android device.
 
-[![Discord server](https://img.shields.io/discord/1195734228319617024.svg?label=&labelColor=6A7EC2&color=7389D8&logo=discord&logoColor=FFFFFF)](https://discord.gg/sakayomi)
+[![Discord server](https://img.shields.io/discord/1195734228319617024.svg?label=&labelColor=6A7EC2&color=7389D8&logo=discord&logoColor=FFFFFF)](https://discord.gg/mihon)
 [![GitHub downloads](https://img.shields.io/github/downloads/Sakayorii/sakayomi/total?label=downloads&labelColor=27303D&color=0D1117&logo=github&logoColor=FFFFFF&style=flat)](https://sakayomi.sakayori.dev/download)
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Sakayorii/sakayomi/build.yml?labelColor=27303D)](https://github.com/Sakayorii/sakayomi/actions/workflows/build_push.yml)
 [![License: Apache-2.0](https://img.shields.io/github/license/Sakayorii/sakayomi?labelColor=27303D&color=0877d2)](/LICENSE)
-[![Translation status](https://img.shields.io/weblate/progress/sakayomi?labelColor=27303D&color=946300)](https://hosted.weblate.org/engage/sakayomi/)
+[![Translation status](https://img.shields.io/weblate/progress/mihon?labelColor=27303D&color=946300)](https://hosted.weblate.org/engage/mihon/)
 
 ## Download
 
-[![Sakayomi Stable](https://img.shields.io/github/release/Sakayorii/sakayomi.svg?maxAge=3600&label=Stable&labelColor=06599d&color=043b69)](https://sakayomi.sakayori.dev/download)
-[![Sakayomi Beta](https://img.shields.io/github/v/release/Sakayorii/sakayomi-preview.svg?maxAge=3600&label=Beta&labelColor=2c2c47&color=1c1c39)](https://sakayomi.sakayori.dev/download)
+[![Mihon Stable](https://img.shields.io/github/release/Sakayorii/sakayomi.svg?maxAge=3600&label=Stable&labelColor=06599d&color=043b69)](https://sakayomi.sakayori.dev/download)
+[![Mihon Beta](https://img.shields.io/github/v/release/Sakayorii/sakayomi-preview.svg?maxAge=3600&label=Beta&labelColor=2c2c47&color=1c1c39)](https://sakayomi.sakayori.dev/download)
 
 *Requires Android 8.0 or higher.*
 
@@ -44,20 +44,20 @@ Discover and read manga, webtoons, comics, and more – easier than ever on your
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Before reporting a new issue, take a look at the [FAQ](https://sakayomi.sakayori.dev/docs/faq/general), the [changelog](https://sakayomi.sakayori.dev/changelogs/) and the already opened [issues](https://github.com/Sakayorii/sakayomi/issues); if you got any questions, join our [Discord server](https://discord.gg/sakayomi).
+Before reporting a new issue, take a look at the [FAQ](https://sakayomi.sakayori.dev/docs/faq/general), the [changelog](https://sakayomi.sakayori.dev/changelogs/) and the already opened [issues](https://github.com/Sakayorii/sakayomi/issues); if you got any questions, join our [Discord server](https://discord.gg/mihon).
 
 
 ### Repositories
 
-[![Sakayorii/website - GitHub](https://github-readme-stats.vercel.app/api/pin/?username=Sakayorii&repo=website&bg_color=161B22&text_color=c9d1d9&title_color=0877d2&icon_color=0877d2&border_radius=8&hide_border=true&description_lines_count=2)](https://github.com/Sakayorii/website/)
-[![Sakayorii/bitmap.kt - GitHub](https://github-readme-stats.vercel.app/api/pin/?username=Sakayorii&repo=bitmap.kt&bg_color=161B22&text_color=c9d1d9&title_color=0877d2&icon_color=0877d2&border_radius=8&hide_border=true&description_lines_count=2)](https://github.com/Sakayorii/bitmap.kt/)
+[![mihonapp/website - GitHub](https://github-readme-stats.vercel.app/api/pin/?username=mihonapp&repo=website&bg_color=161B22&text_color=c9d1d9&title_color=0877d2&icon_color=0877d2&border_radius=8&hide_border=true&description_lines_count=2)](https://github.com/mihonapp/website/)
+[![mihonapp/bitmap.kt - GitHub](https://github-readme-stats.vercel.app/api/pin/?username=mihonapp&repo=bitmap.kt&bg_color=161B22&text_color=c9d1d9&title_color=0877d2&icon_color=0877d2&border_radius=8&hide_border=true&description_lines_count=2)](https://github.com/mihonapp/bitmap.kt/)
 
 ### Credits
 
 Thank you to all the people who have contributed!
 
 <a href="https://github.com/Sakayorii/sakayomi/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=Sakayorii/sakayomi" alt="Sakayomi app contributors" title="Sakayomi app contributors" width="800"/>
+    <img src="https://contrib.rocks/image?repo=Sakayorii/sakayomi" alt="Mihon app contributors" title="Mihon app contributors" width="800"/>
 </a>
 
 ### Disclaimer
@@ -68,7 +68,7 @@ The developer(s) of this application does not have any affiliation with the cont
 
 <pre>
 Copyright © 2015 Javier Tomás
-Copyright © 2024 Sakayomi Open Source Project
+Copyright © 2024 Mihon Open Source Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

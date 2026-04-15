@@ -47,13 +47,13 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Sakayomi">
+        android:theme="@style/Theme.Tachiyomi">
 
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.Sakayomi.SplashScreen">
+            android:theme="@style/Theme.Tachiyomi.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,7 +67,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="sakayomi" />
+                <data android:scheme="tachiyomi" />
                 <data android:host="add-repo" />
             </intent-filter>
 
@@ -122,7 +122,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="dev.sakayori.sakayomi.SEARCH" />
+                <action android:name="eu.kanade.tachiyomi.SEARCH" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
@@ -152,7 +152,7 @@
         <activity
             android:name=".ui.security.UnlockActivity"
             android:exported="false"
-            android:theme="@style/Theme.Sakayomi" />
+            android:theme="@style/Theme.Tachiyomi" />
 
         <activity
             android:name=".ui.webview.WebViewActivity"
@@ -174,7 +174,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="sakayomi" />
+                <data android:scheme="mihon" />
 
                 <data android:host="anilist-auth" />
                 <data android:host="bangumi-auth" />

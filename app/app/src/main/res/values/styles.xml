@@ -5,7 +5,7 @@
     <!--Toolbars-->
     <!--========-->
 
-    <style name="Theme.Sakayomi.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
+    <style name="Theme.Tachiyomi.ActionButton.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="android:tint">?attr/colorOnSurface</item>
     </style>
 

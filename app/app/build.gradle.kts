@@ -1,13 +1,13 @@
-import sakayomi.gradle.Config
-import sakayomi.gradle.getBuildTime
-import sakayomi.gradle.getLatestCommitCount
-import sakayomi.gradle.getLatestCommitSha
-import sakayomi.gradle.tasks.ReplaceShortcutsPlaceholderTask
+import mihon.gradle.Config
+import mihon.gradle.getBuildTime
+import mihon.gradle.getLatestCommitCount
+import mihon.gradle.getLatestCommitSha
+import mihon.gradle.tasks.ReplaceShortcutsPlaceholderTask
 
 plugins {
-    alias(sakayomix.plugins.android.application)
-    alias(sakayomix.plugins.compose)
-    alias(sakayomix.plugins.spotless)
+    alias(mihonx.plugins.android.application)
+    alias(mihonx.plugins.compose)
+    alias(mihonx.plugins.spotless)
 
     alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.kotlin.serialization)
@@ -21,7 +21,7 @@ if (Config.includeTelemetry) {
 }
 
 android {
-    namespace = "dev.sakayori.sakayomi"
+    namespace = "eu.kanade.tachiyomi"
 
     signingConfigs {
         create("release") {

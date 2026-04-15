@@ -128,7 +128,7 @@ firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "fir
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 flexibleAdapter = { module = "com.github.arkon.FlexibleAdapter:flexible-adapter", version.ref = "flexibleAdapter" }
 image-decoder = { module = "com.github.tachiyomiorg:image-decoder", version.ref = "image-decoder" }
-injekt = { module = "com.github.inorichi:injekt", version.ref = "injekt" }
+injekt = { module = "com.github.mihonapp:injekt", version.ref = "injekt" }
 jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }

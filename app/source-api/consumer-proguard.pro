@@ -1,5 +1,5 @@
--keep class dev.sakayori.sakayomi.source.model.** { public protected *; }
--keep class dev.sakayori.sakayomi.source.online.** { public protected *; }
--keep class dev.sakayori.sakayomi.source.** extends dev.sakayori.sakayomi.source.Source { public protected *; }
+-keep class eu.kanade.tachiyomi.source.model.** { public protected *; }
+-keep class eu.kanade.tachiyomi.source.online.** { public protected *; }
+-keep class eu.kanade.tachiyomi.source.** extends eu.kanade.tachiyomi.source.Source { public protected *; }
 
--keep,allowoptimization class dev.sakayori.sakayomi.util.JsoupExtensionsKt { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.util.JsoupExtensionsKt { public protected *; }

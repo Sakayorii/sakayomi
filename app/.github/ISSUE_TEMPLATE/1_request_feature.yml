@@ -1,12 +1,12 @@
 name: ⭐ Feature request
-description: Suggest a feature to improve Sakayomi
+description: Suggest a feature to improve Mihon
 labels: [feature request]
 body:
   - type: textarea
     id: feature-description
     attributes:
       label: Describe your suggested feature
-      description: How can Sakayomi be improved?
+      description: How can Mihon be improved?
       placeholder: |
         Example:
           "It should work like this..."

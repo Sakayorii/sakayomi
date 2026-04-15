@@ -1,5 +1,5 @@
 name: 🐞 Issue report
-description: Report an issue in Sakayomi
+description: Report an issue in Mihon
 labels: [bug]
 body:
   - type: textarea
@@ -47,10 +47,10 @@ body:
         You can upload the crash log file as an attachment, or paste the crash logs in plain text if needed.
 
   - type: input
-    id: sakayomi-version
+    id: mihon-version
     attributes:
-      label: Sakayomi version
-      description: You can find your Sakayomi version in **More → About**.
+      label: Mihon version
+      description: You can find your Mihon version in **More → About**.
       placeholder: |
         Example: "0.19.9"
     validations:
@@ -99,5 +99,5 @@ body:
           required: true
         - label: I have filled out all of the requested information in this form, including specific version numbers.
           required: true
-        - label: I understand that **Sakayomi does not have or fix any extensions**, and I **will not receive help** for any issues related to sources or extensions.
+        - label: I understand that **Mihon does not have or fix any extensions**, and I **will not receive help** for any issues related to sources or extensions.
           required: true

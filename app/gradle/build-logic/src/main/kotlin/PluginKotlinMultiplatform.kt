@@ -1,9 +1,9 @@
-import sakayomi.gradle.configurations.configureAndroid
-import sakayomi.gradle.configurations.configureKotlin
-import sakayomi.gradle.extensions.alias
-import sakayomi.gradle.extensions.configureTest
-import sakayomi.gradle.extensions.libs
-import sakayomi.gradle.extensions.plugins
+import mihon.gradle.configurations.configureAndroid
+import mihon.gradle.configurations.configureKotlin
+import mihon.gradle.extensions.alias
+import mihon.gradle.extensions.configureTest
+import mihon.gradle.extensions.libs
+import mihon.gradle.extensions.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure

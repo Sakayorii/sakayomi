@@ -10,7 +10,7 @@ plugins {
     alias(libs.plugins.moko.resources) apply false
     alias(libs.plugins.sqldelight) apply false
 
-    alias(sakayomix.plugins.spotless)
+    alias(mihonx.plugins.spotless)
 }
 
 val buildLogic: IncludedBuild = gradle.includedBuild("build-logic")

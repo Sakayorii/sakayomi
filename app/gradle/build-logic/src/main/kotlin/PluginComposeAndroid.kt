@@ -1,10 +1,10 @@
-import sakayomi.gradle.extensions.alias
-import sakayomi.gradle.extensions.android
-import sakayomi.gradle.extensions.api
-import sakayomi.gradle.extensions.debugApi
-import sakayomi.gradle.extensions.implementation
-import sakayomi.gradle.extensions.libs
-import sakayomi.gradle.extensions.plugins
+import mihon.gradle.extensions.alias
+import mihon.gradle.extensions.android
+import mihon.gradle.extensions.api
+import mihon.gradle.extensions.debugApi
+import mihon.gradle.extensions.implementation
+import mihon.gradle.extensions.libs
+import mihon.gradle.extensions.plugins
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies

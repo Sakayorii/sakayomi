@@ -6,7 +6,7 @@
     <!--============-->
 
     <!--== Theme Base ==-->
-    <style name="Base.Theme.Sakayomi" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.Tachiyomi" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Disallow "Force dark theme" -->
         <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
 
@@ -70,7 +70,7 @@
         <item name="android:buttonStyle">?attr/borderlessButtonStyle</item>
         <item name="android:backgroundDimAmount">0.32</item>
         <item name="windowActionModeOverlay">true</item>
-        <item name="actionOverflowButtonStyle">@style/Theme.Sakayomi.ActionButton.Overflow</item>
+        <item name="actionOverflowButtonStyle">@style/Theme.Tachiyomi.ActionButton.Overflow</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Tachiyomi</item>
         <item name="textInputStyle">@style/Widget.Material3.TextInputLayout.OutlinedBox</item>
         <item name="appBarLayoutStyle">@style/Widget.Material3.AppBarLayout</item>
@@ -86,13 +86,13 @@
     </style>
 
     <!--== Default Theme ==-->
-    <style name="Theme.Sakayomi" parent="Base.Theme.Sakayomi" />
+    <style name="Theme.Tachiyomi" parent="Base.Theme.Tachiyomi" />
 
     <!-- Monet theme only support S+ -->
-    <style name="Theme.Sakayomi.Monet" />
+    <style name="Theme.Tachiyomi.Monet" />
 
     <!--== Catppuccin Theme ==-->
-    <style name="Theme.Sakayomi.Catppuccin">
+    <style name="Theme.Tachiyomi.Catppuccin">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/catppuccin_primary</item>
         <item name="colorOnPrimary">@color/catppuccin_onPrimary</item>
@@ -131,7 +131,7 @@
         <item name="colorSurfaceContainerLowest">@color/catppuccin_surfaceContainerLowest</item>
     </style>
     <!--== Green Apple Theme ==-->
-    <style name="Theme.Sakayomi.GreenApple">
+    <style name="Theme.Tachiyomi.GreenApple">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/greenapple_primary</item>
         <item name="colorOnPrimary">@color/greenapple_onPrimary</item>
@@ -171,7 +171,7 @@
     </style>
 
     <!--== Lavender Theme ==-->
-    <style name="Theme.Sakayomi.Lavender">
+    <style name="Theme.Tachiyomi.Lavender">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/lavender_primary</item>
         <item name="colorOnPrimary">@color/lavender_onPrimary</item>
@@ -211,7 +211,7 @@
     </style>
 
     <!--== Midnight Dusk Theme ==-->
-    <style name="Theme.Sakayomi.MidnightDusk">
+    <style name="Theme.Tachiyomi.MidnightDusk">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/midnightdusk_primary</item>
         <item name="colorOnPrimary">@color/midnightdusk_onPrimary</item>
@@ -244,7 +244,7 @@
     </style>
 
     <!--== Strawberry Daiquiri Theme ==-->
-    <style name="Theme.Sakayomi.StrawberryDaiquiri">
+    <style name="Theme.Tachiyomi.StrawberryDaiquiri">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/strawberry_primary</item>
         <item name="colorOnPrimary">@color/strawberry_onPrimary</item>
@@ -284,7 +284,7 @@
     </style>
 
     <!--== Tako Theme ==-->
-    <style name="Theme.Sakayomi.Tako">
+    <style name="Theme.Tachiyomi.Tako">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/tako_primary</item>
         <item name="colorOnPrimary">@color/tako_onPrimary</item>
@@ -317,7 +317,7 @@
     </style>
 
     <!--== Teal & Turquoise Theme ==-->
-    <style name="Theme.Sakayomi.TealTurquoise">
+    <style name="Theme.Tachiyomi.TealTurquoise">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/tealturquoise_primary</item>
         <item name="colorOnPrimary">@color/tealturquoise_onPrimary</item>
@@ -350,7 +350,7 @@
     </style>
 
     <!--== Yin & Yang Theme ==-->
-    <style name="Theme.Sakayomi.YinYang">
+    <style name="Theme.Tachiyomi.YinYang">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/yinyang_primary</item>
         <item name="colorOnPrimary">@color/yinyang_onPrimary</item>
@@ -383,7 +383,7 @@
     </style>
 
     <!--== Yotsuba Theme ==-->
-    <style name="Theme.Sakayomi.Yotsuba">
+    <style name="Theme.Tachiyomi.Yotsuba">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/yotsuba_primary</item>
         <item name="colorOnPrimary">@color/yotsuba_onPrimary</item>
@@ -416,7 +416,7 @@
     </style>
 
     <!--== Tidal Wave Theme ==-->
-    <style name="Theme.Sakayomi.TidalWave">
+    <style name="Theme.Tachiyomi.TidalWave">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/tidalwave_primary</item>
         <item name="colorOnPrimary">@color/tidalwave_onPrimary</item>
@@ -449,7 +449,7 @@
     </style>
 
     <!--== Nord Theme ==-->
-    <style name="Theme.Sakayomi.Nord">
+    <style name="Theme.Tachiyomi.Nord">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/nord_primary</item>
         <item name="colorOnPrimary">@color/nord_onPrimary</item>
@@ -486,7 +486,7 @@
     </style>
 
     <!--== Monochrome Theme ==-->
-    <style name="Theme.Sakayomi.Monochrome">
+    <style name="Theme.Tachiyomi.Monochrome">
         <!-- Theme Colors -->
         <item name="colorPrimary">@color/monochrome_primary</item>
         <item name="colorOnPrimary">@color/monochrome_onPrimary</item>
@@ -532,10 +532,10 @@
     <!--===============-->
 
     <!--== Splash Theme ==-->
-    <style name="Theme.Sakayomi.SplashScreen" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_sakayomi_splash</item>
+    <style name="Theme.Tachiyomi.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_mihon_splash</item>
         <item name="windowSplashScreenBackground">@color/splash</item>
-        <item name="postSplashScreenTheme">@style/Theme.Sakayomi</item>
+        <item name="postSplashScreenTheme">@style/Theme.Tachiyomi</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>

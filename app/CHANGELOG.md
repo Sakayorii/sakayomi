@@ -245,7 +245,7 @@ Same as v0.19.6
 
 ### Fixed
 - Fix MAL `main_picture` nullability breaking search if a result doesn't have a cover set ([@MajorTanya](https://github.com/MajorTanya)) ([#1618](https://github.com/Sakayorii/sakayomi/pull/1618))
-- Fix Bangumi and MAL tracking 401 errors due to Sakayomi sending expired credentials ([@MajorTanya](https://github.com/MajorTanya)) ([#1681](https://github.com/Sakayorii/sakayomi/pull/1681), [#1682](https://github.com/Sakayorii/sakayomi/pull/1682))
+- Fix Bangumi and MAL tracking 401 errors due to Mihon sending expired credentials ([@MajorTanya](https://github.com/MajorTanya)) ([#1681](https://github.com/Sakayorii/sakayomi/pull/1681), [#1682](https://github.com/Sakayorii/sakayomi/pull/1682))
 - Fix certain Infinix, Xiaomi devices being unable to use any "Open link in browser" actions, including tracker setup ([@MajorTanya](https://github.com/MajorTanya)) ([#1684](https://github.com/Sakayorii/sakayomi/pull/1684)) ([#1776](https://github.com/Sakayorii/sakayomi/pull/1776))
 - Fix App's preferences referencing deleted categories ([@cuong-tran](https://github.com/cuong-tran)) ([#1734](https://github.com/Sakayorii/sakayomi/pull/1734))
 - Fix backup/restore of category related preferences ([@cuong-tran](https://github.com/cuong-tran)) ([#1726](https://github.com/Sakayorii/sakayomi/pull/1726))
@@ -417,7 +417,7 @@ Same as v0.19.6
   - Add MigratorTest to build script ([@cuong-tran](https://github.com/cuong-tran)) ([#896](https://github.com/Sakayorii/sakayomi/pull/896))
   - Fix UI freeze after migration ([@AntsyLich](https://github.com/AntsyLich)) ([`3f1d28c`](https://github.com/Sakayorii/sakayomi/commit/3f1d28c3833e6b868152149ed02b3fb8c54eccef))
   - Fix some migrations never running ([@MajorTanya](https://github.com/MajorTanya), [@AntsyLich](https://github.com/AntsyLich)) ([#1030](https://github.com/Sakayorii/sakayomi/pull/1030))
-- Add ProGuard rule to keep `sakayomi` namespace classes ([@MajorTanya](https://github.com/MajorTanya)) ([#605](https://github.com/Sakayorii/sakayomi/pull/605))
+- Add ProGuard rule to keep `mihon` namespace classes ([@MajorTanya](https://github.com/MajorTanya)) ([#605](https://github.com/Sakayorii/sakayomi/pull/605))
 - Use gradle plugins to share build configuration instead of subprojects ([@AntsyLich](https://github.com/AntsyLich)) ([`e448e40`](https://github.com/Sakayorii/sakayomi/commit/e448e40406e8d9916120a278e42829a6f1b25a7a))
 - Remove dependency on compose material 2 components ([@AntsyLich](https://github.com/AntsyLich)) ([`fb94230`](https://github.com/Sakayorii/sakayomi/commit/fb9423028eb017c110cb805f2d0601e5b02e50f9))
 - Upload PR build artifacts to GitHub ([@FooIbar](https://github.com/FooIbar)) ([#941](https://github.com/Sakayorii/sakayomi/pull/941))
@@ -481,12 +481,12 @@ Same as v0.19.6
 
 ### Changed
 - Hide display cutoff setting in reader settings sheet if fullscreen is disabled ([@Riztard](https://github.com/Riztard)) ([#241](https://github.com/Sakayorii/sakayomi/pull/241))
-- Library update error filename to `sakayomi_update_errors.txt` from `tachiyomi_update_errors.txt` ([@mjishnu](https://github.com/mjishnu)) ([#253](https://github.com/Sakayorii/sakayomi/pull/253))
+- Library update error filename to `mihon_update_errors.txt` from `tachiyomi_update_errors.txt` ([@mjishnu](https://github.com/mjishnu)) ([#253](https://github.com/Sakayorii/sakayomi/pull/253))
 
 ### Fixed
 - Bottom sheet UI issues on non-tablet devices ([@theolm](https://github.com/theolm)) ([#182](https://github.com/Sakayorii/sakayomi/pull/182))
 - Crash when switching screen while a list is scrolling ([@theolm](https://github.com/theolm)) ([#272](https://github.com/Sakayorii/sakayomi/pull/272))
-- Newly installed extensions not being recognized by Sakayomi ([@AwkwardPeak7](https://github.com/AwkwardPeak7)) ([#275](https://github.com/Sakayorii/sakayomi/pull/275))
+- Newly installed extensions not being recognized by Mihon ([@AwkwardPeak7](https://github.com/AwkwardPeak7)) ([#275](https://github.com/Sakayorii/sakayomi/pull/275))
 - Failing to refresh MAL token being inferred as token expiration ([@AntsyLich](https://github.com/AntsyLich)) ([`0f4de03`](https://github.com/Sakayorii/sakayomi/commit/0f4de03d7a77b52490dc9a95e96a308b93b26e4f))
 
 ### Other
@@ -496,9 +496,9 @@ Same as v0.19.6
 ### Changed
 - Backup now contains scanlator filter of a series ([@jobobby04](https://github.com/jobobby04)) ([#166](https://github.com/Sakayorii/sakayomi/pull/166))
 - App icon scaling ([@AntsyLich](https://github.com/AntsyLich)) ([`26815c7`](https://github.com/Sakayorii/sakayomi/commit/26815c7356111394665467c1e81255ac9ee33c1a))
-- Tracker OAuth client to Sakayomi's (fixes login issue for Shikimori tracker) ([@AntsyLich](https://github.com/AntsyLich)) ([`e3f33e2`](https://github.com/Sakayorii/sakayomi/commit/e3f33e24f5e928ac8a85d1f500fd42d4715fc6b5))
+- Tracker OAuth client to Mihon's (fixes login issue for Shikimori tracker) ([@AntsyLich](https://github.com/AntsyLich)) ([`e3f33e2`](https://github.com/Sakayorii/sakayomi/commit/e3f33e24f5e928ac8a85d1f500fd42d4715fc6b5))
 - Tracker user agents ([@AntsyLich](https://github.com/AntsyLich), [@kitsumed](https://github.com/kitsumed)) ([`e3f33e2`](https://github.com/Sakayorii/sakayomi/commit/e3f33e24f5e928ac8a85d1f500fd42d4715fc6b5))
-- Crash log filename to `sakayomi_crash_logs.txt` from `tachiyomi_crash_logs.txt` ([@MajorTanya](https://github.com/MajorTanya)) ([#234](https://github.com/Sakayorii/sakayomi/pull/234))
+- Crash log filename to `mihon_crash_logs.txt` from `tachiyomi_crash_logs.txt` ([@MajorTanya](https://github.com/MajorTanya)) ([#234](https://github.com/Sakayorii/sakayomi/pull/234))
 - Don't try to refresh MAL token after refresh token expires ([@AntsyLich](https://github.com/AntsyLich)) ([`32188f9`](https://github.com/Sakayorii/sakayomi/commit/32188f9f65009a18250674ef1bd6e57d351c1fba))
 
 ### Fixed
@@ -516,7 +516,7 @@ Same as v0.19.6
 
 ## [v0.16.1] - 2024-01-18
 ### Changed
-- Branding to Sakayomi (for references we missed) ([@AntsyLich](https://github.com/AntsyLich)) ([`6539406`](https://github.com/Sakayorii/sakayomi/commit/653940613d661eb371aab3b3c3a8181e4e308c43))
+- Branding to Mihon (for references we missed) ([@AntsyLich](https://github.com/AntsyLich)) ([`6539406`](https://github.com/Sakayorii/sakayomi/commit/653940613d661eb371aab3b3c3a8181e4e308c43))
 - Preview builds are now called Beta builds ([@AntsyLich](https://github.com/AntsyLich)) ([`3c3a1cd`](https://github.com/Sakayorii/sakayomi/commit/3c3a1cd448ab1f653ddd12b2afe0cba38968d1b9))
 
 ### Fixed
@@ -525,7 +525,7 @@ Same as v0.19.6
 
 ## [v0.16.0] - 2024-01-16
 ### Changed
-- Branding to Sakayomi ([@AntsyLich](https://github.com/AntsyLich))
+- Branding to Mihon ([@AntsyLich](https://github.com/AntsyLich))
 - Minimum supported Android version to 8 ([@AntsyLich](https://github.com/AntsyLich)) ([`dfb3091`](https://github.com/Sakayorii/sakayomi/commit/dfb3091e380dda3e9bfb64bf5c9a685cf3a03d0e))
 
 [unreleased]: https://github.com/Sakayorii/sakayomi/compare/v0.19.9...main

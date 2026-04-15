@@ -1,8 +1,8 @@
 -dontobfuscate
 
--keep,allowoptimization class dev.sakayori.**
+-keep,allowoptimization class eu.kanade.**
 -keep,allowoptimization class tachiyomi.**
--keep,allowoptimization class sakayomi.**
+-keep,allowoptimization class mihon.**
 
 # Keep common dependencies used in extensions
 -keep,allowoptimization class androidx.preference.** { public protected *; }
@@ -18,12 +18,12 @@
 -keep,allowoptimization class uy.kohesive.injekt.** { public protected *; }
 
 # From extensions-lib
--keep,allowoptimization class dev.sakayori.sakayomi.network.interceptor.RateLimitInterceptorKt { public protected *; }
--keep,allowoptimization class dev.sakayori.sakayomi.network.interceptor.SpecificHostRateLimitInterceptorKt { public protected *; }
--keep,allowoptimization class dev.sakayori.sakayomi.network.NetworkHelper { public protected *; }
--keep,allowoptimization class dev.sakayori.sakayomi.network.OkHttpExtensionsKt { public protected *; }
--keep,allowoptimization class dev.sakayori.sakayomi.network.RequestsKt { public protected *; }
--keep,allowoptimization class dev.sakayori.sakayomi.AppInfo { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.network.interceptor.RateLimitInterceptorKt { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.network.interceptor.SpecificHostRateLimitInterceptorKt { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.network.NetworkHelper { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.network.OkHttpExtensionsKt { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.network.RequestsKt { public protected *; }
+-keep,allowoptimization class eu.kanade.tachiyomi.AppInfo { public protected *; }
 
 ##---------------Begin: proguard configuration for RxJava 1.x  ----------
 -dontwarn sun.misc.**
@@ -60,11 +60,11 @@
     kotlinx.serialization.KSerializer serializer(...);
 }
 
--keep,includedescriptorclasses class dev.sakayori.**$$serializer { *; }
--keepclassmembers class dev.sakayori.** {
+-keep,includedescriptorclasses class eu.kanade.**$$serializer { *; }
+-keepclassmembers class eu.kanade.** {
     *** Companion;
 }
--keepclasseswithmembers class dev.sakayori.** {
+-keepclasseswithmembers class eu.kanade.** {
     kotlinx.serialization.KSerializer serializer(...);
 }
 

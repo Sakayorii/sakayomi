@@ -1,15 +1,15 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
-    alias(sakayomix.plugins.kotlin.multiplatform)
-    alias(sakayomix.plugins.spotless)
+    alias(mihonx.plugins.kotlin.multiplatform)
+    alias(mihonx.plugins.spotless)
 
     alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
     android {
-        namespace = "dev.sakayori.sakayomi.source"
+        namespace = "eu.kanade.tachiyomi.source"
 
         defaultConfig {
             consumerProguardFile("consumer-proguard.pro")

@@ -1,12 +1,12 @@
-import sakayomi.gradle.Config
+import mihon.gradle.Config
 
 plugins {
-    alias(sakayomix.plugins.android.library)
-    alias(sakayomix.plugins.spotless)
+    alias(mihonx.plugins.android.library)
+    alias(mihonx.plugins.spotless)
 }
 
 android {
-    namespace = "sakayomi.telemetry"
+    namespace = "mihon.telemetry"
 
     sourceSets {
         getByName("main") {

@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 
 plugins {
-    alias(sakayomix.plugins.kotlin.multiplatform)
-    alias(sakayomix.plugins.spotless)
+    alias(mihonx.plugins.kotlin.multiplatform)
+    alias(mihonx.plugins.spotless)
 }
 
 kotlin {

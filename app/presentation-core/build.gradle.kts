@@ -1,8 +1,8 @@
 plugins {
-    alias(sakayomix.plugins.android.library)
-    alias(sakayomix.plugins.compose)
+    alias(mihonx.plugins.android.library)
+    alias(mihonx.plugins.compose)
 
-    alias(sakayomix.plugins.spotless)
+    alias(mihonx.plugins.spotless)
 }
 
 android {

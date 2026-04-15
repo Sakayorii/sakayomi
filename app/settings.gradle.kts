@@ -10,8 +10,8 @@ pluginManagement {
 
 dependencyResolutionManagement {
     versionCatalogs {
-        create("sakayomix") {
-            from(files("gradle/sakayomi.versions.toml"))
+        create("mihonx") {
+            from(files("gradle/mihon.versions.toml"))
         }
     }
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -24,7 +24,7 @@ dependencyResolutionManagement {
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-rootProject.name = "Sakayomi"
+rootProject.name = "Mihon"
 include(":app")
 include(":core-metadata")
 include(":core:archive")
