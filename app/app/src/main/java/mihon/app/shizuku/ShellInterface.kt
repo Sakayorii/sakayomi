@@ -37,7 +37,7 @@
  * SOFTWARE.
  */
 
-package sakayomi.sakayori.dev.shizuku
+package mihon.app.shizuku
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
